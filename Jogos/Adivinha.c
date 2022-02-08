@@ -6,26 +6,29 @@ void apresentacao();
 int nivelDoJogo();
 int tentativa(int nt, int tt);
 
-int main(){
+int main(void){
 
-    int chute, tentativas, segredo;
+    int chute, tentativas, segredo, i;
     double pontos = 1000;
+
+    srand(time(0));
+    segredo = rand() % 100;
 
     apresentacao();
     tentativas = nivelDoJogo();
 
-    for(int i = 1; i <= tentativas; i++){
+    for(i = 1; i <= tentativas; i++){
         chute = tentativa(i, tentativas);
         if(chute == segredo){
             printf("\nParabens, voce acertou o numero que pensei!\n");
             printf("\nSua pontuacao foi: %.2f pontos.\n", pontos);
             break;
         }else if(chute > segredo){
-            printf("O seu chute: %d, foi MAIOR que numero que pensei. Tente novamente.\n");
+            printf("O seu chute: %d, foi MAIOR que numero que pensei. Tente novamente.\n", chute);
         }else if(chute < segredo){
-            printf("O seu chute: %d, foi MENOR que numero que pensei. Tente novamente.\n");
+            printf("O seu chute: %d, foi MENOR que numero que pensei. Tente novamente.\n", chute);
         }
-        pontos += abs(chute - segredo) / 2.0;
+        pontos -= abs(chute - segredo) / 2.0;
     }
 
     if(chute != segredo){
@@ -81,14 +84,16 @@ int nivelDoJogo(){
 }
 
 int tentativa(int nt, int tt){
-    int c = 1, n,;
+    int c = 1, n;
     while(c){
         printf("Tentativa %d de %d\n", nt, tt);
         printf("Informe um valor inteiro => ");
         scanf("%d", &n);
         if(n < 0){
             printf("Voce nao pode chutar valores negativos.\n");
-        }
+        }else{
+        	c = 0;
+		}
     }
     return n;
 }
