@@ -28,7 +28,7 @@ void apresentacao(){ // Mensagem de saudacao
 }
 
 int nivelDoJogo(){
-    int controle = 1, dificuldade = NULL;
+    int controle = 1, dificuldade = 0;
     while(controle){
         printf("Informe o numero do nivel de dificuldade desejada, conforme as opcoes a baixo:\n");
         printf("(1) Facil - 20 tentativas;\n");
@@ -54,7 +54,7 @@ int nivelDoJogo(){
                 break;
             default:
                 printf("Nivel informado esta incorreto.\n");
-                dificuldade = NULL;
+                dificuldade = 0;
                 controle = 1;
                 break;
         }
