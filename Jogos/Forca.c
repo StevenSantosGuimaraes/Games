@@ -2,12 +2,13 @@
 #include <string.h>
 
 #define TAM 26
+#define NIVEL 10
 
-char palavraSecreta[20], chutes[TAM];
+char palavraSecreta[NIVEL], chutes[TAM];
 int tentativas = 0;
 
 void apresentacao();
-void novoChute(char chutes[TAM], int tentativas);
+void novoChute();
 int analisarChute(char letra);
 void dica();
 void definirPalavraSecreta();
@@ -18,8 +19,7 @@ int main(){
     definirPalavraSecreta();
     do{
         dica();
-        novoChute(chutes, tentativas);
-        tentativas++;
+        novoChute();
     }while(!acertou && !enforcou);
 }
 
@@ -29,15 +29,16 @@ void apresentacao(){
     printf("===============================\n\n");
 }
 
-void novoChute(char chutes[TAM], int tentativas){
+void novoChute(){
     char chute;
     printf("\nInforme uma letra: ");
     scanf(" %c", &chute);
-    chutes[tentativas] = chute; // Salvar letras já informadas.
+    chutes[tentativas] = chute;
+    tentativas++; // Ponto frágil.
 }
 
 int analisarChute(char letra){
-    int achou = 0; // Verificar se a lista de letras já informadas, consta na lista de letras da palavra secreta.
+    int achou = 0;
     for(int j = 0; j < tentativas; j++){
         if(chutes[j] == letra){
             achou = 1;
@@ -52,14 +53,14 @@ void dica(){
     printf("Palavra --> ");
     for(int i = 0; i < strlen(palavraSecreta); i++){
         if(analisarChute(palavraSecreta[i])){
-            printf("%c ", palavraSecreta[i]); // Exibir letra que consta já informada.
+            printf("%c ", palavraSecreta[i]);
         }else{
-            printf("_ "); // Suprimir letra ainda não encontrada.
+            printf("_ ");
         }
     }
     printf("\n");
 }
 
-void definirPalavraSecreta(){
+void definirPalavraSecreta(){ // Adicionar menu para informa palavra antes de iniciar jogo.
     sprintf(palavraSecreta, "Morango"); // Problema -> Resolver entrada de caractere maiusculo e minusculo ao fim.
 }
