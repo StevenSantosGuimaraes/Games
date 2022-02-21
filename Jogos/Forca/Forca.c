@@ -15,7 +15,7 @@ int main(){
         imprimirForca();
         novaLetra();
     }while(!verificarVenceu() && !verificarPerdeu());
-    system("SLEEP 3");
+    system("sleep 1");
     if(verificarVenceu()){
         printf("\nParabens voce acertou!!!\n");
         printf("\nA palavra secreta era ==> %s.\n", palavraSecreta);
@@ -24,6 +24,7 @@ int main(){
         printf("\nA palavra era ==> %s <==\n", palavraSecreta);
     }
     inserirPalavraDicionario();
+    printf("Programa finalizado, inicie novamente para carregar outra palavra.");
 }
 
 // Funcoes:
