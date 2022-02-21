@@ -15,6 +15,7 @@ int main(){
         imprimirForca();
         novaLetra();
     }while(!verificarVenceu() && !verificarPerdeu());
+    system("SLEEP 3");
     if(verificarVenceu()){
         printf("\nParabens voce acertou!!!\n");
         printf("\nA palavra secreta era ==> %s.\n", palavraSecreta);
