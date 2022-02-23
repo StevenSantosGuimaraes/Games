@@ -1,3 +1,2 @@
-void alocarMapa();
-void carregarMapa();
-void liberarMapa();
+void mover(char direcao);
+int venceu();

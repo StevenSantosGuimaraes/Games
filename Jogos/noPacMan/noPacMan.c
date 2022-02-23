@@ -1,47 +1,56 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "nopacman.h"
+#include "mapa.h"
 
-int linhas, colunas;
-char** mapa;
+MAPA m; // Formato do mapa: 5x10
+POSICAO personagem;
 
 int main(){
-    int i;
-    carregarMapa();
-    for(i = 0; i < linhas; i++){
-        printf("%s\n", mapa[i]);
-    }
-    liberarMapa();
+    carregarMapa(&m);
+    encontrarPersonagem(&m, &personagem, '@'); // Personagem principal: '@'
+    do{
+        char direcao;
+        imprimirMapa(&m);
+        scanf(" %c", &direcao);
+        mover(direcao);
+    }while(!venceu());
+    liberarMapa(&m);
 }
 
-void liberarMapa(){
-    int i;
-    for(i = 0; i < linhas; i++){
-        free(mapa[i]);
+void mover(char direcao){
+    system("clear");
+    switch(direcao){ // LEMBRETE: personagem principal e o simbolo:'@'.
+        case 'a': // Esquerda
+            m.matriz[personagem.x][personagem.y - 1] = '@';
+            m.matriz[personagem.x][personagem.y] = '.';
+            personagem.y--;
+            break;
+        case 'd': // Direita
+            m.matriz[personagem.x][personagem.y + 1] = '@';
+            m.matriz[personagem.x][personagem.y] = '.';
+            personagem.y++;
+            break;
+        case 'w': // Subir
+            m.matriz[personagem.x - 1][personagem.y] = '@';
+            m.matriz[personagem.x][personagem.y] = '.';
+            personagem.x--;
+            break;
+        case 's': // Descer
+            m.matriz[personagem.x + 1][personagem.y] = '@';
+            m.matriz[personagem.x][personagem.y] = '.';
+            personagem.x++;
+            break;
+        default:
+            printf("\nComando invalido, utilize as teclas abaixo para se movimentar:\n");
+            printf("A->Esquerda, ");
+            printf("D->Direita, ");
+            printf("W-> Subir, ");
+            printf("S->Descer.\n");
+            break;
     }
-    free(mapa);
 }
 
-void alocarMapa(){
-    int i;
-    mapa = malloc(sizeof(char*) * linhas);
-    for(i = 0; i < linhas; i++){
-        mapa[i] = malloc(sizeof(char) * (colunas + 1));
-    }
-}
-
-void carregarMapa(){
-    int i;
-    FILE* arquivo;
-    arquivo = fopen("mapa.txt", "r");
-    if(arquivo == 0){
-        printf("Erro de execusao no arquivo: 'mapa.txt'!\n");
-        exit(1);
-    }
-    fscanf(arquivo, "%d %d", &linhas, &colunas);
-    alocarMapa();
-    for(i = 0; i < linhas; i++){
-        fscanf(arquivo, "%s", mapa[i]);
-    }
-    fclose(arquivo);
+int venceu(){
+    return 0;
 }
