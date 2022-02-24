@@ -9,13 +9,6 @@ void andou(MAPA* m, int xOrigem, int xDestino, int yOrigem, int yDestino){
     m->matriz[xOrigem][yOrigem] = ESPACO_VAZIO;
 }
 
-void imprimirMapa(MAPA* m){
-    int i;
-    for(i = 0; i < m->linhas; i++){
-        printf("%s\n", m->matriz[i]);
-    }
-}
-
 void liberarMapa(MAPA* m){
     int i;
     for(i = 0; i < m->linhas; i++){
@@ -38,7 +31,7 @@ void alocarMapa(MAPA* m){
     int i;
     m->matriz = malloc(sizeof(char*) * m->linhas);
     for(i = 0; i < m->linhas; i++){
-        m->matriz[i] = malloc(sizeof(char) * (m->colunas + 1));
+        m->matriz[i] = malloc(sizeof(char) * m->colunas + 1);
     }
 }
 
@@ -59,30 +52,26 @@ void carregarMapa(MAPA* m){
 }
 
 int limitesMapa(MAPA* m, int x, int y){
-    if(x >= m->linhas || y >= m->colunas){
-        return 0;
-    }else{
-        return 1;
-    }
+    return x >= m->linhas || y >= m->colunas;
 }
 
 int encontreiParede(MAPA* m, int x, int y){
     return m->matriz[x][y] == PAREDE_HORIZONTAL || m->matriz[x][y] == PAREDE_VERTICAL;
 }
 
-int encontreiFantasma(MAPA* m, int x, int y, char cFantasma){
-    return m->matriz[x][y] == cFantasma;
+int buscarPersonagem(MAPA* m, int x, int y, char cPersonagem){
+    return m->matriz[x][y] == cPersonagem;
 }
 
 int podeAndar(MAPA* m, int x, int y, char personagem){
     return
         limitesMapa(m, x, y) &&
         !encontreiParede(m, x, y) &&
-        !encontreiFantasma(m, x, y, personagem);
+        !buscarPersonagem(m, x, y, personagem);
 }
 
 int encontrarPersonagem(MAPA* m, POSICAO* p, char c){
-    int x, y, i, j;
+    int i, j;
     for(i = 0; i < m->linhas; i++){
         for(j = 0; j < m->colunas; j++){
             if(m->matriz[i][j] == c){ // Personagem encontrado (true)
@@ -94,16 +83,3 @@ int encontrarPersonagem(MAPA* m, POSICAO* p, char c){
     }
     return 0;
 }
-
-/*
-//================================================================
-//================================================================
-
-int caminhoNormal(MAPA* m, int x, int y){
-    if(m->matriz[x][y] == ESPACO_VAZIO){
-        return 1;
-    }else{
-        return 0;
-    }
-}
-*/
