@@ -1,24 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "mapa.h"
 
-void encontrarPersonagem(MAPA* m, POSICAO* p, char c){
-    int x, y, i, j;
-    for(i = 0; i < m->linhas; i++){
-        for(j = 0; j < m->colunas; j++){
-            if(m->matriz[i][j] == c){ // Personagem encontrado (true)
-                p->x = i; // linha(p)
-                p->y = j; // coluna(p)
-                break;
-            }
-        }
-    }
+void andou(MAPA* m, int xOrigem, int xDestino, int yOrigem, int yDestino){
+    char personagem = m->matriz[xOrigem][yOrigem];
+    m->matriz[xDestino][yDestino] = personagem;
+    m->matriz[xOrigem][yOrigem] = ESPACO_VAZIO;
 }
 
 void imprimirMapa(MAPA* m){
     int i;
     for(i = 0; i < m->linhas; i++){
-            printf("%s\n", m->matriz[i]);
+        printf("%s\n", m->matriz[i]);
     }
 }
 
@@ -28,6 +22,16 @@ void liberarMapa(MAPA* m){
         free(m->matriz[i]);
     }
     free(m->matriz);
+}
+
+void clonarMapa(MAPA* destino, MAPA* origem){
+    int i;
+    destino->colunas = origem->colunas;
+    destino->linhas = origem->linhas;
+    alocarMapa(destino);
+    for(i = 0; i < origem->linhas; i++){
+        strcpy(destino->matriz[i], origem->matriz[i]);
+    }
 }
 
 void alocarMapa(MAPA* m){
@@ -53,3 +57,53 @@ void carregarMapa(MAPA* m){
     }
     fclose(arquivo);
 }
+
+int limitesMapa(MAPA* m, int x, int y){
+    if(x >= m->linhas || y >= m->colunas){
+        return 0;
+    }else{
+        return 1;
+    }
+}
+
+int encontreiParede(MAPA* m, int x, int y){
+    return m->matriz[x][y] == PAREDE_HORIZONTAL || m->matriz[x][y] == PAREDE_VERTICAL;
+}
+
+int encontreiFantasma(MAPA* m, int x, int y, char cFantasma){
+    return m->matriz[x][y] == cFantasma;
+}
+
+int podeAndar(MAPA* m, int x, int y, char personagem){
+    return
+        limitesMapa(m, x, y) &&
+        !encontreiParede(m, x, y) &&
+        !encontreiFantasma(m, x, y, personagem);
+}
+
+int encontrarPersonagem(MAPA* m, POSICAO* p, char c){
+    int x, y, i, j;
+    for(i = 0; i < m->linhas; i++){
+        for(j = 0; j < m->colunas; j++){
+            if(m->matriz[i][j] == c){ // Personagem encontrado (true)
+                p->x = i; // linha(p)
+                p->y = j; // coluna(p)
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+/*
+//================================================================
+//================================================================
+
+int caminhoNormal(MAPA* m, int x, int y){
+    if(m->matriz[x][y] == ESPACO_VAZIO){
+        return 1;
+    }else{
+        return 0;
+    }
+}
+*/
