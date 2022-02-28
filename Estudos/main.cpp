@@ -176,7 +176,7 @@ void limpar_Matriz_Adjacencia(){
 
 void imprimir_Matriz_Adjacencia(){
     int coluna, linha;
-    printf("\nMatriz de Adjacencia:\n|      ");
+    printf("\n\nMatriz de Adjacencia:\n|      ");
     for(linha = 1; linha <= tamanho; linha++){ // Imprimir cabeçalho horizontal da matriz.
         if(linha < 10){
             printf("| <0%d> ", linha);
@@ -216,8 +216,9 @@ void imprimir_Matriz_Adjacencia(){
 
 void dados_Matriz_Adjacencia(){
     int coluna, linha;
-    char resposta;
-    do{
+    char resposta = 's';
+    while(resposta == 's' || resposta == 'S'){
+        system("clear");
         imprimir_Matriz_Adjacencia();
         printf("\nInforme o vertice de origem: ");
         scanf("%d", &linha);
@@ -232,7 +233,8 @@ void dados_Matriz_Adjacencia(){
                 matriz_adjacencia[linha][coluna] = 0;
             }
         }
+        imprimir_Matriz_Adjacencia();
         printf("\nDeseja informa outra adjacencia? (S/N) ==> ");
         scanf(" %c", &resposta);
-    }while(resposta != 'n' || resposta != 'N');
+    }
 }
