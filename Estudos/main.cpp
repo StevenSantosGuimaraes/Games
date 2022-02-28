@@ -16,89 +16,44 @@ int main(){
                 tela_Menu_Imprimir();
                 break;
             case 3:
-                tela_Menu_Informar_Dados();
+                tela_Menu_Informa_Dados();
                 break;
             case 4:
                 tela_Menu_Limpar_Dados();
-                break;
-            default:
-                printf("\nOpcao informada e invalida, tente novamente.\n");
                 break;
         }
     }while(opcao != 0);
     printf("\nPrograma encerrado com sucesso!\n\n");
 }
 
-// Funcoes:
-void limpar_Matriz_Adjacencia(){
-	int linha, coluna;
-	for(linha = 0; linha <= tamanho; linha++){
-		for(coluna = 1; coluna <= tamanho; coluna++){
-			matriz_adjacencia[linha][coluna] = 0;
-		}
-	}
+
+// Menus (n1):
+int tela_Menu_Principal(){
+    int resposta;
+    printf("\n");
+    printf("|=============================|\n");
+    printf("|  > Menu Principal <         |\n");
+    printf("|-----------------------------|\n");
+    printf("|                             |\n");
+    printf("|  O que deseja realizar com  |\n");
+    printf("|  uma estrutura de dados?    |\n");
+    printf("|                             |\n");
+    printf("|  1) Iniciar;                |\n");
+    printf("|  2) Imprimir;               |\n");
+    printf("|  3) Informar Dados;         |\n");
+    printf("|  4) Limpar Dados;           |\n");
+    printf("|                             |\n");
+    printf("|                             |\n");
+    printf("|  0) Encerrar Programa.      |\n");
+    printf("|                             |\n");
+    printf("|=============================|\n");
+    printf("|>>> ");
+    scanf("%d", &resposta);
+    return resposta;
 }
 
-void imprimir_Matriz_Adjacencia(){
-    int coluna, linha;
-    printf("\n M.A. ");
-    for(linha = 1; linha <= tamanho; linha++){
-		if(linha < 10){
-			printf("|--0%d--", linha);
-		}else{
-			printf("|--%d--", linha);
-		}
-	}
-    printf("|\n");
-    for(linha = 1; linha <= tamanho; linha++){
-		for(coluna = 1; coluna <= tamanho; coluna++){
-			if(coluna == 1 && linha < 10){
-				printf("  0%d--|", linha);
-			}else if(coluna == 1){
-				printf("  %d--|", linha);
-			}
-			if(linha == coluna){
-				printf("  xx  |");
-			}else if(matriz_adjacencia[linha][coluna] == 0){
-				printf("      |"); // Criterio para facilitar a leitura.
-			}else{
-				if(matriz_adjacencia[linha][coluna] >= 0 && matriz_adjacencia[linha][coluna] <= 9){
-					printf("   %d  |", matriz_adjacencia[linha][coluna]);
-				}else if(matriz_adjacencia[linha][coluna] >= -9 && matriz_adjacencia[linha][coluna] < 0){
-					printf("  %d  |", matriz_adjacencia[linha][coluna]);
-				}else if(matriz_adjacencia[linha][coluna] < -9){
-					printf(" %d  |", matriz_adjacencia[linha][coluna]);
-				}else{
-					printf("  %d  |", matriz_adjacencia[linha][coluna]);
-				}
-			}	
-			if(coluna == tamanho){
-				printf("\n");
-			}
-		}
-	}
-}
 
-void dados_Matriz_Adjacencia(){
-    int coluna, linha, valor;
-    char resposta;
-    do{
-        printf("\nInforme os vertices e em seguida a qual o valor (0 ou 1) na relacao (Ex: 1 3 0 - 'Um para Tres Ligado.'):\n");
-        scanf("%d %d %d", &linha, &coluna, &valor);
-        if(linha == coluna){
-            printf("\nAtencao, nao e possivel informa na posicao: %d para %d, pois e um laco. Tente novamente outra posicao.\n", linha, coluna);
-        }else if(valor == 1 || valor == 0){
-            matriz_adjacencia[linha][coluna] = 1;
-            imprimir_Matriz_Adjacencia();
-        }else{
-            printf("\nAtencao, para confirma que ou nao relacao deve ser informado 0 para nao, e 1 para sim. Tente novamente.\n");
-        }
-        printf("\nDeseja encerrar o programa? (S/N)\n");
-    }while(resposta == 'N' || resposta == 'n');
-    return;
-}
-
-// Menus:
+// Menus (n2):
 void tela_Menu_Iniciar(){
     int resposta;
     do{
@@ -119,15 +74,13 @@ void tela_Menu_Iniciar(){
         scanf("%d", &resposta);
         switch(resposta){
             case 1:
-                printf("\nInicializando matriz de adjacencia zerada, informe o tamanho desejado: ");
+                printf("\nInicializando matriz de adjacencia, informe o tamanho desejado: ");
                 scanf("%d", &tamanho);
                 limpar_Matriz_Adjacencia();
                 printf("\nMatriz de adjacencia com %d vertices inicializada com sucesso!\n", tamanho);
                 break;
         }
     }while(resposta != 0);
-    system("clear");
-    return;
 }
 
 void tela_Menu_Imprimir(){
@@ -154,8 +107,6 @@ void tela_Menu_Imprimir(){
                 break;
         }
     }while(resposta != 0);
-    system("clear");
-    return;
 }
 
 void tela_Menu_Informa_Dados(){
@@ -182,8 +133,6 @@ void tela_Menu_Informa_Dados(){
                 break;
         }
     }while(resposta != 0);
-    system("clear");
-    return;
 }
 
 void tela_Menu_Limpar_Dados(){
@@ -206,36 +155,84 @@ void tela_Menu_Limpar_Dados(){
         scanf("%d", &resposta);
         switch(resposta){
             case 1:
-                printf("\nVerificando matriz de adjacencia ja criada...");
+                printf("\nVerificando matriz de adjacencia ja criada...\n");
                 limpar_Matriz_Adjacencia();
-                printf("\nMatriz de adjacencia limpa com sucesso!");
+                printf("\nMatriz de adjacencia limpa com sucesso!\n");
                 break;
         }
     }while(resposta != 0);
-    system("clear");
-    return;
 }
 
-int tela_Menu_Pencipal(){
-    int resposta;
-    printf("\n");
-    printf("|=============================|\n");
-    printf("|  > Menu Principal <         |\n");
-    printf("|-----------------------------|\n");
-    printf("|                             |\n");
-    printf("|  Informe a opcao desejada:  |\n");
-    printf("|                             |\n");
-    printf("|  1) Iniciar;                |\n");
-    printf("|  2) Imprimir;               |\n");
-    printf("|  3) Informar Dados;         |\n");
-    printf("|  4) Limpar Dados;           |\n");
-    printf("|                             |\n");
-    printf("|                             |\n");
-    printf("|  0) Encerrar Programa.      |\n");
-    printf("|                             |\n");
-    printf("|=============================|\n");
-    printf("|>>> ");
-    scanf("%d", &resposta);
-    system("clear");
-    return resposta;
+
+// Funcoes:
+void limpar_Matriz_Adjacencia(){
+    int coluna, linha;
+    for(linha = 0; linha <= tamanho; linha++){
+        for(coluna = 1; coluna <= tamanho; coluna++){
+            matriz_adjacencia[linha][coluna] = 0;
+        }
+    }
+}
+
+void imprimir_Matriz_Adjacencia(){
+    int coluna, linha;
+    printf("\nMatriz de Adjacencia:\n|      ");
+    for(linha = 1; linha <= tamanho; linha++){ // Imprimir cabeçalho horizontal da matriz.
+        if(linha < 10){
+            printf("| <0%d> ", linha);
+        }else{
+            printf("| <%d> ", linha);
+        }
+    }
+    printf("|\n");
+    for(linha = 1; linha <= tamanho; linha++){
+        for(coluna = 1; coluna <= tamanho; coluna++){
+            if(coluna == 1 && linha < 10){ // Imprimir cabeçalho vertical da matriz.
+                printf("| <0%d> |", linha);
+            }else if(coluna == 1){
+                printf(" <%d> |", linha);
+            }
+            if(coluna == linha){ // Criterio: O vertice, na matriz de adjacencia, nao possui laco.
+                printf("  xx  |");
+            }else if(matriz_adjacencia[linha][coluna] == 0){ // Criterio: Os sem ligacoes, FALSE, nao serao exibidos para facilitar leitura.
+                printf("      |");
+            }else{
+                if(matriz_adjacencia[linha][coluna] >= 0 && matriz_adjacencia[linha][coluna] <= 9){
+                    printf("   %d  |", matriz_adjacencia[linha][coluna]);
+                }else if(matriz_adjacencia[linha][coluna] >= -9 && matriz_adjacencia[linha][coluna] < 0){
+                    printf("  %d  |", matriz_adjacencia[linha][coluna]);
+                }else if(matriz_adjacencia[linha][coluna] < -9){
+                    printf(" %d  |", matriz_adjacencia[linha][coluna]);
+                }else if(matriz_adjacencia[linha][coluna] > 9){
+                    printf("  %d  |", matriz_adjacencia[linha][coluna]);
+                }
+            }
+            if(coluna == tamanho){
+                printf("\n");
+            }
+        }
+    }
+}
+
+void dados_Matriz_Adjacencia(){
+    int coluna, linha;
+    char resposta;
+    do{
+        imprimir_Matriz_Adjacencia();
+        printf("\nInforme o vertice de origem: ");
+        scanf("%d", &linha);
+        printf("\nInforme o vertice de destino: ");
+        scanf("%d", &coluna);
+        if(linha == coluna){
+            printf("\nA linha: %d e Coluna: %d, nao e valido.", linha, coluna);
+        }else{
+            if(matriz_adjacencia[linha][coluna] == 0){
+                matriz_adjacencia[linha][coluna] = 1;
+            }else{
+                matriz_adjacencia[linha][coluna] = 0;
+            }
+        }
+        printf("\nDeseja informa outra adjacencia? (S/N) ==> ");
+        scanf(" %c", &resposta);
+    }while(resposta != 'n' || resposta != 'N');
 }
