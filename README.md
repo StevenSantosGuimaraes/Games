@@ -1,9 +1,15 @@
 # Hobby
 This repository has simple games and data structure, the objective is to test the code development skills in different languages and forms.
 
-## Data Struture:
+## Data Struture (coming soon):
 
-- Graph;
+> Arrays;
+> Lists;
+> Stacks;
+> Queues;
+> Hash Tables;
+> Trees;
+> Graphs.
 
 ## Games:
 
