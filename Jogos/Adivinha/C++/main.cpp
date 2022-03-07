@@ -14,6 +14,8 @@ int main(){ // Modos: Jogar sozinho (utilizar: chances) ou nao (sistema de pontu
             }while(!acertou && tentativa < chances);
             break;
         case 2:
+            // char nome_jogadores[quantidade->nomes]
+            // int pontos_jogadores[quantidade<-pontos]
             // Solicitar quantidade de players
             // loop com o loop principal, a o concluir atribui os pontos ao nome e player para exibir no fim.
             break;
