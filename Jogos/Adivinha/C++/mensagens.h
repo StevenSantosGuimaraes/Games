@@ -6,6 +6,7 @@
 using namespace std;
 
 int saudacao();
+int nivel_dificuldade();
 void programa_finalizado();
 
 #endif
