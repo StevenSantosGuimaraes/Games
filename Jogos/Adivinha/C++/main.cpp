@@ -3,8 +3,9 @@
 #include "funcoes.h"
 
 
-int main(){ // Modos: Jogar sozinho (utilizar: chances) ou nao (sistema de pontuacao com x players)
-    const int NUMERO_SECRETO = 47;
+int main(){
+    srand(time(NULL));
+    const int NUMERO_SECRETO = rand() % 100;
     int acertou, tentativa = 0, modo, chute, chances = 3;
     double pontos = 1000, pontos_perdidos;
     char continuar = 's';

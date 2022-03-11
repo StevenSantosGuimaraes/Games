@@ -3,7 +3,7 @@
 int novo_chute(int tentativa){
     int chute;
     do{
-        cout << "Tentativa " << tentativa + 1 << " - Informe seu chute: ";
+        cout << "Tentativa " << tentativa + 1 << " - Informe seu chute entre (0 e 99): ";
         cin >> chute;
     }while(verificar_negativo(chute));
     return chute;
