@@ -1,7 +1,9 @@
 from PIL import Image
 
-imagem = Image.open('./doge.jpg')
+imagem = Image.open('../Imagens/doge.jpg')
 
 print(imagem.size)
 
-imagem.show('./doge.jpg')
+imagem.save('../Imagens/doge2.jpg')
+
+imagem.show('../Imagens/doge.jpg')

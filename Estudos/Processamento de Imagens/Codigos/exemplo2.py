@@ -1,7 +1,7 @@
 from PIL import Image
 
-imagem = Image.open('./doge.jpg')
+imagem = Image.open('../Imagens/doge.jpg')
 
-imagem.save('./doge.png')
+imagem.save('../Imagens/doge.png')
 
-imagem.show('./doge.png')
+imagem.show('../Imagens/doge.png')
