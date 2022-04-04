@@ -13,6 +13,7 @@
 #define TAM_NOME 16
 #define QTD_NOTAS 3
 #define NOTA_MINIMA 6.0
+
 typedef	struct{
     char nome[TAM_NOME];
     char sexo;
