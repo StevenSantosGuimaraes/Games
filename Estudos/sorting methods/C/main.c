@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "main.h"
 
 // Methods:
 // Bubble_sort;
@@ -9,20 +8,8 @@
 
 // swap(array, a , b)
 
-void clearSystem();
-void pauseSystem();
-
 int main(){
     clearSystem();
     printf("Test.\n");
     pauseSystem();
-}
-
-void clearSystem(){
-    system("clear");
-}
-
-void pauseSystem(){
-    printf("Press any key to continue...");
-    getchar();
 }
