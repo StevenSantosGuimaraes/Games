@@ -4,6 +4,7 @@
 #include "main.h"
 
 void clearSystem();
-void pauseSystem();
+void print_values(float *array, int size);
+void reset_values(float *array, int size);
 
 #endif
