@@ -16,6 +16,5 @@ float *values;
 
 int screenMain();
 int screenSort();
-bool exit_program();
 
 #endif

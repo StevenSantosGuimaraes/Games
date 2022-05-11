@@ -16,17 +16,41 @@ int main(){
                 print_values(values, length);
                 break;
             case 3:
+                insertValue(values, length);
+                break;
+            case 4:
                 clearSystem();
                 switch(screenSort()){
                     case 1:
+                        printf("Before:");
+                        print_values(values, length);
+                        bubble_sort(values, length);
+                        printf("After:");
+                        print_values(values, length);
+                        break;
+                    case 2:
+                        printf("\nSelection sort.");
+                        break;
+                    case 3:
+                        printf("\nInsertion sort.");
+                        break;
+                    case 4:
+                        printf("\nQuick sort.");
+                        break;
+                    case 0:
+                        printf("\nReturned.");
+                        break;
+                    default:
+                        printf("\nThe option informed is invalid, try again...");
                         break;
                 }
                 break;
-            case 4:
-                reset_values(values, length);
-                printf("option 4 - Clean.\n");
-                break;
             case 0:
+                clearSystem();
+                exit(1);
+                break;
+            default:
+                printf("\nThe option informed is invalid, try again...");
                 break;
         }
     }while(exit_program());
@@ -43,7 +67,9 @@ int screenMain(){
         printf("|                                |\n");
         printf("|  1) Start new vector;          |\n");
         printf("|  2) Print values;              |\n");
-        printf("|  3) Sort values;               |\n");
+        printf("|  3) Insert values;             |\n");
+        printf("|  4) Sort values;               |\n");
+        printf("|                                |\n");
         printf("|                                |\n");
         printf("|  0) Exit.                      |\n");
         printf("|                                |\n");
@@ -62,9 +88,10 @@ int screenSort(){
         printf("|--------------------------------|\n");
         printf("|                                |\n");
         printf("|  1) Bubble Sort;               |\n");
-        printf("|  2) Insertio Sort;             |\n");
-        printf("|  3) Selection Sort;            |\n");
+        printf("|  2) Selection Sort;            |\n");
+        printf("|  3) Insertion Sort;            |\n");
         printf("|  4) Quick Sort;                |\n");
+        printf("|                                |\n");
         printf("|                                |\n");
         printf("|  0) Return (Main Screen).      |\n");
         printf("|                                |\n");
@@ -73,17 +100,4 @@ int screenSort(){
         scanf("%i", &option);
     }while(option < 0 && option > 4);
     return option;
-}
-
-bool exit_program(){
-    int answer;
-    do{
-        printf("\nDo you want to close the program? (1-Yes / 2-No)\n>>> ");
-        scanf("%i", &answer);
-    }while(answer != 1 && answer != 2);
-    if(answer == 1){
-        return false;
-    }else{
-        return true;
-    }
 }
