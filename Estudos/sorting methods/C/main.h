@@ -11,10 +11,8 @@ float *values;
 #include <stdbool.h>
 
 // Custom library:
-#include "basic_function.h"
-#include "sort_function.h"
-
-int screenMain();
-int screenSort();
+#include "./screens.h"
+#include "./basic_function.h"
+#include "./sort_function.h"
 
 #endif

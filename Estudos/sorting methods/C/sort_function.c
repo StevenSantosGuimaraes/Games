@@ -19,7 +19,15 @@ void bubble_sort(float *array, int size){
 }
 
 void selection_sort(float *array, int size){
-
+    int i, j;
+    for(i = 0; i < size - 1; i++){
+        for(j = i + 1; j < size; j++){
+            if(array[j] < array[i]){
+                swap_values(&array[j], &array[i]);
+            }
+        }
+    }
+    printf("\nMethod sorting 'Selection Sort' completed.");
 }
 
 void insertion_sort(float *array, int size){
