@@ -22,30 +22,43 @@ int main(){
                 clearSystem();
                 switch(screenSort()){
                     case 1:
-                        printf("\nBefore: ");
+                        clearSystem();
+                        printf("Before: ");
                         print_values(values, length);
                         bubble_sort(values, length);
                         printf("\nAfter: ");
                         print_values(values, length);
                         break;
                     case 2:
-                        printf("\nBefore: ");
+                        clearSystem();
+                        printf("Before: ");
                         print_values(values, length);
                         selection_sort(values, length);
                         printf("\nAfter: ");
                         print_values(values, length);
                         break;
                     case 3:
-                        printf("\nInsertion sort.");
+                        clearSystem();
+                        printf("Before: ");
+                        print_values(values, length);
+                        insertion_sort(values, length);
+                        printf("\nAfter: ");
+                        print_values(values, length);
                         break;
                     case 4:
-                        printf("\nQuick sort.");
+                        clearSystem();
+                        printf("Before: ");
+                        quick_sort(values, length);
+                        printf("\nAfter: ");
+                        print_values(values, length);
                         break;
                     case 0:
-                        printf("\nReturned.");
+                        clearSystem();
+                        printf("Returning...");
                         break;
                     default:
-                        printf("\nThe option informed is invalid, try again...");
+                        clearSystem();
+                        printf("The option informed is invalid, try again...");
                         break;
                 }
                 break;

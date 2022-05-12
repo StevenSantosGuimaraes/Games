@@ -15,7 +15,7 @@ void bubble_sort(float *array, int size){
             }
         }
     }
-    printf("\nMethod sorting 'Bubble Sort' completed.");
+    printf("Method sorting 'Bubble Sort' completed.");
 }
 
 void selection_sort(float *array, int size){
@@ -27,13 +27,29 @@ void selection_sort(float *array, int size){
             }
         }
     }
-    printf("\nMethod sorting 'Selection Sort' completed.");
+    printf("Method sorting 'Selection Sort' completed.");
 }
 
 void insertion_sort(float *array, int size){
-
+    int i, j;
+    float auxiliary;
+    for(i = 0; i < size; i++){
+        printf("Inform the %d. value: ", i + 1);
+        scanf("%f", &auxiliary);
+        if(i == 0){
+            array[i] = auxiliary;
+        }else{
+            for(j = i - 1; j >= 0 && array[j] > auxiliary; j--){
+                array[j + 1] = array[j];
+            }
+            array[j + 1] = auxiliary;
+        }
+        print_values(array, size);
+    }
+    printf("Method sorting 'Insertion Sort' completed.");
 }
 
 void quick_sort(float *array, int size){
 
+    printf("Method sorting 'Quick Sort' completed.");
 }
