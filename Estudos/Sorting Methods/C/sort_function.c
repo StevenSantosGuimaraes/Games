@@ -49,7 +49,25 @@ void insertion_sort(float *array, int size){
     printf("Method sorting 'Insertion Sort' completed.");
 }
 
-void quick_sort(float *array, int size){
-
-    printf("Method sorting 'Quick Sort' completed.");
+void quick_sort(float **array, int first, int last){
+    int i, j, pivot;
+    if(first < last){
+        pivot = first;
+        i = first;
+        j = last;
+        while(i < j){
+            while((&array)[i] <= (&array)[pivot] && last){
+                i++;
+            }
+            while(array[j] > array[pivot]){
+                j--;
+            }
+            if(i < j){
+                swap_values((&array)[i], (&array)[j]);
+            }
+        }
+        swap_values(&array[pivot], &array[j]);
+        quick_sort(array, first, j - 1);
+        quick_sort(array, j + 1, last);
+    }
 }

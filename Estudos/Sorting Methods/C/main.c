@@ -48,7 +48,7 @@ int main(){
                     case 4:
                         clearSystem();
                         printf("Before: ");
-                        quick_sort(values, length);
+                        quick_sort(&values, 0, length - 1);
                         printf("\nAfter: ");
                         print_values(values, length);
                         break;
