@@ -1,0 +1,10 @@
+Abstract Data Types:
+
+1. List;
+2. Dictionary;
+3. Set;
+4. Tuple;
+5. Queue;
+6. Stack;
+7. Linked List;
+8. Graph;
