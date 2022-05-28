@@ -1,10 +1,20 @@
-Abstract Data Types:
+Data Structure:
 
-1. List;
-2. Dictionary;
-3. Set;
-4. Tuple;
-5. Queue;
-6. Stack;
-7. Linked List;
-8. Graph;
+>> Primitive:
+- Integer;
+- Float;
+- Character;
+- Pointer;
+
+>> Non-primitive:
+> Linear:
+- Arrays;
+- Linked List;
+- Queue;
+- Stack;
+> Non-linear:
+- Graph;
+- Set or Struct or Tuple;
+- Tree;
+> Files;
+- Dictionary;
